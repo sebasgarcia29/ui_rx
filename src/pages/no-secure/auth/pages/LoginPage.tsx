@@ -3,34 +3,31 @@ import { useDispatch, useSelector } from 'react-redux';
 import *  as Yup from 'yup';
 import { Formik, Form, FormikProps } from 'formik';
 import { Link as RouterLink } from 'react-router-dom';
-import { Grid, Link, Typography } from '@mui/material';
+import { Alert, Grid, Link, Typography } from '@mui/material';
 import { Google } from '@mui/icons-material';
 import { AuthLayout } from '../layout/AuthLayout';
 import { FieldComponent, ButtonComponent } from '../../../../components';
 import { IForm } from './Modeluser';
-import { checkingAuthentication, startGoogleSingIn } from '../../../../redux/actions/actionsAuth';
+import { startGoogleSingIn, startLoginWithEmailAndPassword } from '../../../../redux/actions/actionsAuth';
 import { RootReducerTypes } from '../../../../redux/RootReducer';
 
 const initialData = {
-    email: '',
-    password: ''
+    email: 'sebas-fe@hotmail.com',
+    password: 'Test1234'
 }
 
 export const LoginPage = () => {
 
     const dispatch = useDispatch();
-    const { status } = useSelector((state: RootReducerTypes) => state.authReducer);
+    const { status, errorMessage } = useSelector((state: RootReducerTypes) => state.authReducer);
 
     const isAuthenticating = useMemo(() => status === 'checking', [status]);
 
-
     const onSubmit = (values: IForm) => {
-        console.log({ values })
-        dispatch(checkingAuthentication());
+        dispatch(startLoginWithEmailAndPassword({ email: values.email, password: values.password }));
     }
 
     const onGoogleSingIn = (values: IForm) => {
-        console.log('onGoogleSingIn', { values })
         dispatch(startGoogleSingIn());
     }
 
@@ -70,6 +67,11 @@ export const LoginPage = () => {
                             </Grid>
 
                             <Grid container spacing={2} sx={{ mb: 2, mt: 1 }}>
+
+                                <Grid item xs={12} display={!!errorMessage ? '' : 'none'}>
+                                    <Alert severity='error'>{errorMessage}</Alert>
+                                </Grid>
+
                                 <Grid item xs={12} sm={6}>
                                     <ButtonComponent
                                         onClick={() => console.log('Login')}

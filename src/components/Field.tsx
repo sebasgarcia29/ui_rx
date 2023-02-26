@@ -22,8 +22,6 @@ export const FieldComponent = (props: InterfaceFromGroup) => {
             placeholder={placeholder}
             fullWidth
             onChange={(e) => {
-                console.log('e', e.target.value);
-                console.log('label', label);
                 onChange(label, e.target.value)
             }}
             error={!!errors}

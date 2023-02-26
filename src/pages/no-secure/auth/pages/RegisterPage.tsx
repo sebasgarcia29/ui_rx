@@ -31,7 +31,6 @@ export const RegisterPage = () => {
             password: values.password,
             name: values.name
         }));
-        console.log({ values })
     }
 
     return (

@@ -1,11 +1,13 @@
 import {
     GoogleAuthProvider,
     createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
     signInWithPopup,
     updateProfile
 } from "firebase/auth";
 import { FirebaseAuth } from "./firebaseConfig";
 import { InterfaceInitialData } from "../pages/no-secure/auth/pages";
+import { IForm } from "../pages/no-secure/auth/pages/Modeluser";
 
 const googleProvider = new GoogleAuthProvider();
 
@@ -14,7 +16,6 @@ export const signInWithGoogle = async () => {
         const result = await signInWithPopup(FirebaseAuth, googleProvider);
         // const credentials = GoogleAuthProvider.credentialFromResult(result);
         const { displayName, email, photoURL, uid } = result.user;
-
         return {
             ok: true,
             displayName,
@@ -30,7 +31,6 @@ export const signInWithGoogle = async () => {
             errorMessage: error?.message || ''
         }
     }
-
 }
 
 
@@ -46,18 +46,34 @@ export const registerUserWithEmailAndPassword = async ({ email, name, password }
             email: response.user.email,
             photoUrl: response.user.photoURL,
         }
-
-
-
-
-
     } catch (error: any) {
         console.error('error in registerUserWithEmailAndPassword>>>', error);
         return {
             ok: false,
             errorMessage: error?.message || ''
         }
-
     }
+}
 
+export const loginWithEmailAndPassword = async ({ email, password }: IForm) => {
+    try {
+        const response = await signInWithEmailAndPassword(FirebaseAuth, email, password);
+        return {
+            ok: true,
+            uid: response.user.uid,
+            displayName: response.user.displayName || '',
+            email: response.user.email,
+            photoUrl: response.user.photoURL,
+        }
+    } catch (error: any) {
+        console.error('error in loginWithEmailAndPassword>>>', error);
+        return {
+            ok: false,
+            errorMessage: error?.message || ''
+        }
+    }
+}
+
+export const logoutFirebase = async () => {
+    return await FirebaseAuth.signOut();
 }

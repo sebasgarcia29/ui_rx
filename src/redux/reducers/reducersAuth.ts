@@ -30,8 +30,25 @@ export const AuthReducer = (state = initialState, action: Action) => {
                 photoUrl: action.payload.photoUrl,
                 uid: action.payload.uid,
             };
+        case ActionTypes.CREATE_USER_WITH_EMAIL_AND_PASSWORD:
+            return {
+                ...state,
+                status: 'authenticated',
+                displayName: action.payload.displayName,
+                email: action.payload.email,
+                photoUrl: action.payload.photoURL,
+                uid: action.payload.uid,
+            };
         case ActionTypes.LOGIN_WITH_EMAIL_AND_PASSWORD:
-            const { displayName, email, photoURL, uid } = action.payload;
+            return {
+                ...state,
+                status: 'authenticated',
+                displayName: action.payload.displayName,
+                email: action.payload.email,
+                photoUrl: action.payload.photoURL,
+                uid: action.payload.uid,
+            };
+        case ActionTypes.LOGIN:
             return {
                 ...state,
                 status: 'authenticated',
