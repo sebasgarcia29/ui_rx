@@ -22,11 +22,23 @@ export const AuthReducer = (state = initialState, action: Action) => {
                 errorMessage,
             };
         case ActionTypes.LOGIN_WITH_GOOGLE:
+            return {
+                ...state,
+                status: 'authenticated',
+                displayName: action.payload.displayName,
+                email: action.payload.email,
+                photoUrl: action.payload.photoUrl,
+                uid: action.payload.uid,
+            };
+        case ActionTypes.LOGIN_WITH_EMAIL_AND_PASSWORD:
             const { displayName, email, photoURL, uid } = action.payload;
             return {
                 ...state,
                 status: 'authenticated',
-                displayName, email, photoUrl: photoURL, uid,
+                displayName: action.payload.displayName,
+                email: action.payload.email,
+                photoUrl: action.payload.photoURL,
+                uid: action.payload.uid,
             };
         default: return state
     }

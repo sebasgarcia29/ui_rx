@@ -12,8 +12,8 @@ import { checkingAuthentication, startGoogleSingIn } from '../../../../redux/act
 import { RootReducerTypes } from '../../../../redux/RootReducer';
 
 const initialData = {
-    email: 'sebasuchiha29.sg@gmail.com',
-    password: '123456'
+    email: '',
+    password: ''
 }
 
 export const LoginPage = () => {
@@ -70,20 +70,24 @@ export const LoginPage = () => {
                             </Grid>
 
                             <Grid container spacing={2} sx={{ mb: 2, mt: 1 }}>
-                                <ButtonComponent
-                                    onClick={() => console.log('Login')}
-                                    disabled={isAuthenticating}
-                                >
-                                    {'Login'}
-                                </ButtonComponent>
-                                <ButtonComponent
-                                    onClick={() => onGoogleSingIn(formikProps.values)}
-                                    disabled={isAuthenticating}
-                                    type='button'
-                                >
-                                    <Google />
-                                    <Typography sx={{ ml: 1 }}>{'Google'}</Typography>
-                                </ButtonComponent>
+                                <Grid item xs={12} sm={6}>
+                                    <ButtonComponent
+                                        onClick={() => console.log('Login')}
+                                        disabled={isAuthenticating}
+                                    >
+                                        {'Login'}
+                                    </ButtonComponent>
+                                </Grid>
+                                <Grid item xs={12} sm={6}>
+                                    <ButtonComponent
+                                        onClick={() => onGoogleSingIn(formikProps.values)}
+                                        disabled={isAuthenticating}
+                                        type='button'
+                                    >
+                                        <Google />
+                                        <Typography sx={{ ml: 1 }}>{'Google'}</Typography>
+                                    </ButtonComponent>
+                                </Grid>
 
                             </Grid>
 

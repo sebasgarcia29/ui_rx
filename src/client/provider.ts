@@ -1,5 +1,11 @@
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import {
+    GoogleAuthProvider,
+    createUserWithEmailAndPassword,
+    signInWithPopup,
+    updateProfile
+} from "firebase/auth";
 import { FirebaseAuth } from "./firebaseConfig";
+import { InterfaceInitialData } from "../pages/no-secure/auth/pages";
 
 const googleProvider = new GoogleAuthProvider();
 
@@ -18,11 +24,40 @@ export const signInWithGoogle = async () => {
         }
 
     } catch (error: any) {
-        console.log('error in GoogleAuthProvider>>>', error);
+        console.error('error in GoogleAuthProvider>>>', error);
         return {
             ok: false,
             errorMessage: error?.message || ''
         }
+    }
+
+}
+
+
+export const registerUserWithEmailAndPassword = async ({ email, name, password }: InterfaceInitialData) => {
+    try {
+        const response = await createUserWithEmailAndPassword(FirebaseAuth, email, password);
+        console.log({ response });
+        await updateProfile(FirebaseAuth.currentUser!, { displayName: name });
+        return {
+            ok: true,
+            uid: response.user.uid,
+            displayName: response.user.displayName || name,
+            email: response.user.email,
+            photoUrl: response.user.photoURL,
+        }
+
+
+
+
+
+    } catch (error: any) {
+        console.error('error in registerUserWithEmailAndPassword>>>', error);
+        return {
+            ok: false,
+            errorMessage: error?.message || ''
+        }
+
     }
 
 }

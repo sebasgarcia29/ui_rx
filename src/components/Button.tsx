@@ -12,17 +12,15 @@ export const ButtonComponent = (props: PropsButton) => {
     const { onClick, type, children, disabled } = props;
 
     return (
-        <Grid item xs={12} sm={6}>
-            <Button
-                variant='contained'
-                fullWidth
-                onClick={onClick}
-                type={type}
-                disabled={disabled}
-            >
-                {children}
-            </Button>
-        </Grid>
+        <Button
+            variant='contained'
+            fullWidth
+            onClick={onClick}
+            type={type}
+            disabled={disabled}
+        >
+            {children}
+        </Button>
     )
 }
 
