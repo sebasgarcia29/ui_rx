@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import { onAuthStateChanged } from 'firebase/auth';
 
-import { AuthRoutes } from '../pages/no-secure/auth/routes/AUthRoutes';
+import { AuthRoutes } from '../pages/no-secure/auth/routes/AuthRoutes';
 import { HomeRoutes } from '../pages/secure/home/routes/HomeRoutes';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootReducerTypes } from '../redux/RootReducer';

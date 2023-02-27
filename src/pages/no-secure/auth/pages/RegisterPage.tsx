@@ -34,7 +34,7 @@ export const RegisterPage = () => {
     }
 
     return (
-        <AuthLayout title="Crear cuenta">
+        <AuthLayout title="Create new account">
             <Formik
                 initialValues={{
                     name: '',
@@ -106,9 +106,11 @@ export const RegisterPage = () => {
 
 
                             <Grid container direction='row' justifyContent='end'>
-                                <Typography sx={{ mr: 1 }}>¿Ya tienes cuenta?</Typography>
+                                <Typography sx={{ mr: 1 }}>
+                                    {'Already have an account?'}
+                                </Typography>
                                 <Link component={RouterLink} color='inherit' to="/auth/login">
-                                    ingresar
+                                    {'Sign in'}
                                 </Link>
                             </Grid>
 

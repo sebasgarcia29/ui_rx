@@ -1,8 +1,8 @@
 import { AppBar, Grid, IconButton, Toolbar, Typography } from '@mui/material';
 import { LogoutOutlined, MenuOutlined } from '@mui/icons-material';
 import { useDispatch } from 'react-redux';
-import { logout } from '../../../../redux/actions/actionsAuth';
-import { logoutFirebase } from '../../../../client/provider';
+import { logout } from '../redux/actions/actionsAuth';
+import { logoutFirebase } from '../client/provider';
 
 
 export const NavBar = ({ drawerWidth = 240 }) => {
