@@ -4,7 +4,7 @@ import {
     loginWithEmailAndPassword,
 } from '../../client/provider'
 import { InterfaceInitialData } from '../../pages/no-secure/auth/pages'
-import { IForm } from '../../pages/no-secure/auth/pages/Modeluser'
+import { IForm } from '../../models/Modeluser'
 import { ActionTypes } from '../types/ReduxTypes'
 
 export const AuthActions = () => {

@@ -7,7 +7,7 @@ import { Alert, Grid, Link, Typography } from '@mui/material';
 import { Google } from '@mui/icons-material';
 import { AuthLayout } from '../layout/AuthLayout';
 import { FieldComponent, ButtonComponent } from '../../../../components';
-import { IForm } from './Modeluser';
+import { IForm } from '../../../../models/Modeluser';
 import { startGoogleSingIn, startLoginWithEmailAndPassword } from '../../../../redux/actions/actionsAuth';
 import { RootReducerTypes } from '../../../../redux/RootReducer';
 
@@ -37,7 +37,7 @@ export const LoginPage = () => {
                 initialValues={initialData}
                 onSubmit={onSubmit}
                 validationSchema={Yup.object({
-                    email: Yup.string().required('The email is required'),
+                    email: Yup.string().required('The email is required').email('The email is not valid'),
                     password: Yup.string().required('This password is required'),
                 })}
             >

@@ -4,13 +4,17 @@ import _ from 'lodash'
 import { AuthTypes } from "./types/AuthTypes"
 import { AuthReducer } from "./reducers";
 import { Action, ActionTypes } from "./types/ReduxTypes";
+import { PatientTypes } from './types/PatientTypes';
+import { PatientReducer } from './reducers/patientReducer';
 
 export type RootReducerTypes = {
     authReducer: AuthTypes.State
+    patientReducer: PatientTypes.State
 }
 
 const reducers = combineReducers({
     authReducer: AuthReducer,
+    patientReducer: PatientReducer,
 });
 
 const getCleanedState = (state: RootStateOrAny): RootStateOrAny => {

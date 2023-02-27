@@ -7,7 +7,7 @@ import {
 } from "firebase/auth";
 import { FirebaseAuth } from "./firebaseConfig";
 import { InterfaceInitialData } from "../pages/no-secure/auth/pages";
-import { IForm } from "../pages/no-secure/auth/pages/Modeluser";
+import { IForm } from "../models/Modeluser";
 
 const googleProvider = new GoogleAuthProvider();
 
