@@ -2,7 +2,7 @@ import { ModelPatients } from "../../models";
 
 export declare namespace PatientTypes {
     export interface State {
-        patient: ModelPatients[];
+        patients: ModelPatients[];
         isSelected: boolean;
         patientSelected: ModelPatients | null;
     }

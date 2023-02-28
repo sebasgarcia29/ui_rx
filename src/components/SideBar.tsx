@@ -1,5 +1,4 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useEffect } from 'react';
 import {
     Box,
     Divider,
@@ -14,25 +13,34 @@ import {
     Typography,
 } from '@mui/material'
 import { Person } from '@mui/icons-material';
-import { ModelPatients } from '../models/';
+import { getPatiens } from '../client/client';
+import { useDispatch, useSelector } from 'react-redux';
+import { getPatients, setPatient } from '../redux/actions';
+import { RootReducerTypes } from '../redux/RootReducer';
+import { ModelPatients } from '../models';
 
 export const SideBar = ({ drawerWidth = 240 }) => {
 
+    const { patients } = useSelector((state: RootReducerTypes) => state.patientReducer);
 
-    const [patients, setPatients] = useState<ModelPatients[]>()
+    const dispatch = useDispatch()
 
     useEffect(() => {
         getDataPatients();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const getDataPatients = async () => {
-        const endpoint = 'https://localhost:7126/api/patients/';
         try {
-            const response = await axios.get(endpoint)
-            setPatients(response.data)
+            const response = await getPatiens();
+            dispatch(getPatients(response))
         } catch (error) {
-            console.error('error>>>>', error)
+            console.log('error>>>>', error)
         }
+    }
+
+    const selectPatient = (patient: ModelPatients) => {
+        dispatch(setPatient(patient));
     }
 
     return (
@@ -53,7 +61,7 @@ export const SideBar = ({ drawerWidth = 240 }) => {
                 <List>
                     {
                         patients?.map(patient => (
-                            <ListItem key={patient.patientId} disablePadding onClick={() => console.log({ patient })}>
+                            <ListItem key={patient.patientId} disablePadding onClick={() => selectPatient(patient)}>
                                 <ListItemButton>
                                     <ListItemIcon>
                                         <Person />
