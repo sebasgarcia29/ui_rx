@@ -2,7 +2,7 @@ import axios from "axios";
 import { ModelPatients } from "../models";
 
 export const getPatiens = async (uid: string = '') => {
-    const url = 'https://localhost:7007/api/patients'
+    const url = 'https://localhost:7007/patients'
     const response = await axios<ModelPatients[]>({
         method: 'get',
         url,
@@ -28,7 +28,7 @@ export const loginWithServiceAPI = async ({ email, password }: DataLogin) => {
         });
         return {
             ok: true,
-            uid: response.data,
+            uid: response.data.accessToken,
             displayName: 'Test',
             email: email,
             photoUrl: 'Test',
