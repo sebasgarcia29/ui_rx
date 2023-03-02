@@ -12,6 +12,7 @@ export const NavBar = ({ drawerWidth = 240 }) => {
     const logOut = () => {
         logoutFirebase();
         dispatch(logout());
+        localStorage.removeItem('uid');
     }
 
     return (

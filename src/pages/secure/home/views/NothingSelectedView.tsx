@@ -16,7 +16,7 @@ export const NothingSelectedView = () => {
                 <BroadcastOnPersonal sx={{ fontSize: 100, color: 'white' }} />
             </Grid>
             <Grid item xs={12}>
-                <Typography color="white" variant='h5'>{'Select one patiente'}</Typography>
+                <Typography color="white" variant='h5'>{'Select one patient'}</Typography>
             </Grid>
         </Grid>
     )

@@ -1,11 +1,12 @@
 import {
     signInWithGoogle,
     registerUserWithEmailAndPassword,
-    loginWithEmailAndPassword,
+    // loginWithEmailAndPassword,
 } from '../../client/provider'
 import { InterfaceInitialData } from '../../pages/no-secure/auth/pages'
 import { IForm } from '../../models/Modeluser'
 import { ActionTypes } from '../types/ReduxTypes'
+import { loginWithServiceAPI } from '../../client/client'
 
 export const AuthActions = () => {
     return async (dispatch: any) => {
@@ -109,7 +110,8 @@ export const startCreatingUserWithEmailAndPassword = ({ name, email, password }:
 export const startLoginWithEmailAndPassword = ({ email, password }: IForm) => {
     return async (dispatch: any) => {
         dispatch({ type: ActionTypes.CHECKING_AUTHENTICATION, })
-        const response = await loginWithEmailAndPassword({ email, password });
+        // const response = await loginWithEmailAndPassword({ email, password });
+        const response = await loginWithServiceAPI({ email, password });
         if (!response.ok) {
             return dispatch({
                 type: ActionTypes.LOGOUT,

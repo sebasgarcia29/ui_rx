@@ -40,6 +40,7 @@ export const AuthReducer = (state = initialState, action: Action) => {
                 uid: action.payload.uid,
             };
         case ActionTypes.LOGIN_WITH_EMAIL_AND_PASSWORD:
+            localStorage.setItem('uid', JSON.stringify({ uid: action.payload.uid }));
             return {
                 ...state,
                 status: 'authenticated',

@@ -19,14 +19,24 @@ export const AppRouter = () => {
     useEffect(() => {
 
         onAuthStateChanged(FirebaseAuth, async (user) => {
-            if (!user) return dispatch(logout());
-            const { email, uid, displayName, photoURL } = user;
-            dispatch(login({
-                email: email || '',
-                uid: uid || '',
-                displayName: displayName || '',
-                photoUrl: photoURL || '',
-            }));
+
+            const uidLocal = JSON.parse(localStorage.getItem('uid')!)
+            if (uidLocal && uidLocal) {
+                dispatch(login({
+                    email: 'sebas@test.com',
+                    uid: uidLocal.uid,
+                    displayName: 'Test',
+                    photoUrl: 'photoURL',
+                }));
+            }
+            // if (!user && !uidLocal.ui) return dispatch(logout());
+            // const { email, uid, photoURL } = user;
+            // dispatch(login({
+            //     email: email || '',
+            //     uid: uid || '',
+            //     displayName: displayName || '',
+            //     photoUrl: photoURL || '',
+            // }));
 
         })
         // eslint-disable-next-line react-hooks/exhaustive-deps

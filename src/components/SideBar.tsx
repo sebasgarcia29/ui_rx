@@ -22,6 +22,7 @@ import { ModelPatients } from '../models';
 export const SideBar = ({ drawerWidth = 240 }) => {
 
     const { patients } = useSelector((state: RootReducerTypes) => state.patientReducer);
+    const { uid } = useSelector((state: RootReducerTypes) => state.authReducer);
 
     const dispatch = useDispatch()
 
@@ -32,7 +33,8 @@ export const SideBar = ({ drawerWidth = 240 }) => {
 
     const getDataPatients = async () => {
         try {
-            const response = await getPatiens();
+            const response = await getPatiens(uid!);
+            // const response = await getPatiens();
             dispatch(getPatients(response))
         } catch (error) {
             console.log('error>>>>', error)
@@ -68,7 +70,6 @@ export const SideBar = ({ drawerWidth = 240 }) => {
                                     </ListItemIcon>
                                     <Grid container>
                                         <ListItemText primary={patient.firstName + ' ' + patient.lastName} />
-                                        <ListItemText secondary={patient.city + patient.postalCode} />
                                     </Grid>
                                 </ListItemButton>
                             </ListItem>

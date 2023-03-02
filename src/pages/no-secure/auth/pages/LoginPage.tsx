@@ -12,7 +12,7 @@ import { startGoogleSingIn, startLoginWithEmailAndPassword } from '../../../../r
 import { RootReducerTypes } from '../../../../redux/RootReducer';
 
 const initialData = {
-    email: 'sebas-fe@hotmail.com',
+    email: 'sebas@test.com',
     password: 'Test1234'
 }
 
